@@ -18,8 +18,16 @@ const sassRules = {
     {
       loader: 'sass-loader',
       options: {
-        // Prefer `dart-sass`
         implementation: sass,
+      },
+    },
+    {
+      loader: 'sass-resources-loader',
+      options: {
+        resources: [
+          path.join(__dirname, 'src', 'styles', '_variables.scss'),
+          path.join(__dirname, 'src', 'styles', '_fonts.scss'),
+        ],
       },
     },
   ],

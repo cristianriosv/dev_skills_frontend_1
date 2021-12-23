@@ -6,6 +6,6 @@
       "moduleResolution": "node",
       "jsx": "react",
       "noImplicitAny": true,
-      "allowSyntheticDefaultImports": true
+      "allowSyntheticDefaultImports": true,
     }
   }
