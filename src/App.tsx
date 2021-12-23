@@ -1,7 +1,9 @@
 import React from 'react';
+import { Container } from './components/layout';
+import './styles/global.scss';
 
 const App = () => (
-  <h3>This is from app!!!!</h3>
+  <Container>This is from app!!!!</Container>
 );
 
 export default App;
