@@ -10,11 +10,25 @@ const typescriptRules = {
   exclude: '/node_modules',
 };
 
-const sassRules = {
-  test: /\.s[ac]ss$/i,
+const svgRules = {
+  test: /\.svg$/i,
+  issuer: /\.[jt]sx?$/,
+  use: ['@svgr/webpack'],
+};
+
+const generateSassRule = (test = /\.s[ac]ss$/i, global = false, exclude = []) => ({
+  test,
+  exclude,
   use: [
     'style-loader',
-    'css-loader',
+    {
+      loader: 'css-loader',
+      options: {
+        modules: {
+          localIdentName: global ? '[local]' : '[local]__[hash:base64:5]',
+        },
+      },
+    },
     {
       loader: 'sass-loader',
       options: {
@@ -26,12 +40,13 @@ const sassRules = {
       options: {
         resources: [
           path.join(__dirname, 'src', 'styles', '_variables.scss'),
-          path.join(__dirname, 'src', 'styles', '_fonts.scss'),
         ],
       },
     },
   ],
-};
+});
+const sassRules = generateSassRule(/\.s[ac]ss$/i, false, [path.join(__dirname, 'src', 'styles', 'global.scss')]);
+const sassRulesForGlobal = generateSassRule(/global.s[ac]ss$/i, true);
 
 module.exports = (env, { mode }) => ({
   entry: {
@@ -48,6 +63,8 @@ module.exports = (env, { mode }) => ({
     rules: [
       typescriptRules,
       sassRules,
+      sassRulesForGlobal,
+      svgRules,
     ],
   },
   output: {

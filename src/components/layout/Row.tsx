@@ -1,8 +1,12 @@
 import React, { FC } from 'react';
 import { Row as RowLibrary } from 'react-bootstrap';
 
-const Row: FC = ({ children }) => (
-  <RowLibrary>
+export type TRow = {
+  className?: string
+}
+
+const Row: FC<TRow> = ({ children, className }) => (
+  <RowLibrary className={className}>
     {children}
   </RowLibrary>
 );

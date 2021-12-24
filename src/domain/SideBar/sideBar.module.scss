@@ -1,0 +1,17 @@
+.container {
+  background-color: $primary-color;
+  width: $side-bar-width;
+  .logoContainer {
+    width: auto;
+    padding: 10px;
+    text-align: center;
+    .logoBig {
+      height: auto;
+      width: calc(100% - 20px);
+      max-width: 135px;
+      g {
+        fill: white;
+      }
+    }
+  }
+}

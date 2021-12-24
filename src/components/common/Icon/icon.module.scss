@@ -1,0 +1,12 @@
+.light {
+  fill: white;
+  g {
+    fill: white;
+  }
+}
+.dark {
+  fill: $primary-color;
+  g {
+    fill: $primary-color;
+  }
+}
