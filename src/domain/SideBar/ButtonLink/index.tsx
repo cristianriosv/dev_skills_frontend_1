@@ -6,22 +6,24 @@ export type TLink = {
   icon: ReactNode,
   label: string,
   notifications?: number,
-  active?: boolean
+  active?: boolean,
+  toggleMenu: boolean,
 };
 
 const Link: FC<TLink> = ({
   icon,
   label, notifications,
   active = false,
+  toggleMenu,
 }) => (
   <div className={`${styles.container} ${active && styles.active}`}>
     <div className={styles.iconText}>
       <div className={styles.iconContainer}>
         {icon}
       </div>
-      {label}
+      {toggleMenu && label}
     </div>
-    {notifications && (
+    {toggleMenu && notifications && (
       <Pill content={notifications} bg="info" />
     )}
   </div>

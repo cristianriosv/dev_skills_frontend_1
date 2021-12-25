@@ -1,8 +1,17 @@
 .container {
   background-color: $primary-color;
-  width: $side-bar-width;
+  animation: hideMenu 0.3s ease forwards;
+  @include breakpoint(medium) {
+    position: fixed;
+    height: 100%;
+    z-index: 10;
+  }
+  &.toggle {
+    animation: toggleMenu 0.3s ease forwards;
+  }
   .logoContainer {
     width: auto;
+    height: 75px;
     padding: 10px;
     text-align: center;
     .logoBig {
@@ -13,5 +22,16 @@
         fill: white;
       }
     }
+    .logoSmall{
+      width: 21px;
+      height: auto;
+      margin-top: 10px;
+      path {
+        fill: white;
+      }
+    }
   }
 }
+
+@include widthAnimation(toggleMenu, $side-bar-width, $side-bar-width-toggle);
+@include widthAnimation(hideMenu, $side-bar-width-toggle, $side-bar-width);

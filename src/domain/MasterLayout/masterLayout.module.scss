@@ -1,0 +1,18 @@
+.content {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  .mainContent {
+    width: calc(100% - $side-bar-width);
+    &.toggleMenu {
+      width: calc(100% - $side-bar-width-toggle);
+    }
+    @include breakpoint(medium) {
+      width: 100%;
+      padding-left: $side-bar-width;
+      &.toggleMenu {
+        width: 100%;
+      }
+    }
+  }
+}

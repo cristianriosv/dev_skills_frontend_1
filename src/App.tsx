@@ -1,13 +1,15 @@
 import React from 'react';
-import { MasterLayout } from './components/layout';
-import { SideBar, TopBar } from './domain';
+import { MasterLayout, SideBar, TopBar } from './domain';
 import { NewDelivery } from './pages';
+import AppProvider from './providers/AppProvider';
 import './styles/global.scss';
 
 const App = () => (
-  <MasterLayout sideBar={<SideBar />} topBar={<TopBar />}>
-    <NewDelivery />
-  </MasterLayout>
+  <AppProvider>
+    <MasterLayout sideBar={<SideBar />} topBar={<TopBar />}>
+      <NewDelivery />
+    </MasterLayout>
+  </AppProvider>
 );
 
 export default App;

@@ -40,6 +40,7 @@ const generateSassRule = (test = /\.s[ac]ss$/i, global = false, exclude = []) =>
       options: {
         resources: [
           path.join(__dirname, 'src', 'styles', '_variables.scss'),
+          path.join(__dirname, 'src', 'styles', '_mixins.scss'),
         ],
       },
     },

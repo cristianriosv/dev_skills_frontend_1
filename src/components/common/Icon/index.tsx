@@ -4,7 +4,7 @@ import styles from './icon.module.scss';
 
 export type TIcon = {
   color?: 'light' | 'dark',
-  icon: 'plus' | 'history' | 'user' | 'truck',
+  icon: 'plus' | 'history' | 'user' | 'truck' | 'collapse' | 'menu',
   width?: string,
   height?: string
 }

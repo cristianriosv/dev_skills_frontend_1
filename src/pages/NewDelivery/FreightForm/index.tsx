@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Card } from '../../../components/common';
 import {
   FormControlAppends,
-  FormControl,
+  // FormControl,
   FormGroup,
   FormLabel,
   FormSelect,
@@ -23,13 +23,13 @@ const FreightForm = () => {
   return (
     <Card title={freightTexts.title}>
       <Row>
-        <Col md={6}>
+        <Col xs={12} sm={6} md={6}>
           <FormGroup as={Row}>
-            <FormLabel column sm={12}>
+            <FormLabel column sm={12} md={12}>
               {freightTexts.typeOfGoods}
               :
             </FormLabel>
-            <Col sm={7}>
+            <Col sm={7} md={6}>
               <RadioSelector
                 options={typesOfGoods}
                 selected={good}
@@ -38,27 +38,24 @@ const FreightForm = () => {
             </Col>
           </FormGroup>
         </Col>
-        <Col>
+        <Col xs={12} sm={6} md={6}>
           <FormGroup as={Row}>
             <FormLabel column sm={12}>
               {freightTexts.quantity}
               :
             </FormLabel>
-            <Col sm={4} md={6}>
+            <Col xs={6} sm={6} md={6}>
               <FormSelect size="sm">
                 <option>Pallet</option>
               </FormSelect>
             </Col>
-            <Col md={1}>
-              x
-            </Col>
-            <Col sm={4} md={5}>
-              <FormControl size="sm" value={1} />
+            <Col xs={6} sm={6} md={6}>
+              <FormControlAppends preText="x" size="sm" value={1} />
             </Col>
           </FormGroup>
         </Col>
       </Row>
-      <Row className="mt-3">
+      <Row>
         <Col md={6}>
           <FormGroup as={Row}>
             <FormLabel column sm={12}>
@@ -76,13 +73,13 @@ const FreightForm = () => {
               {freightTexts.volume}
               :
             </FormLabel>
-            <Col sm={4} md={4}>
+            <Col xs={4} sm={4} md={4}>
               <FormControlAppends size="sm" postText="cm" value={1} />
             </Col>
-            <Col sm={4} md={4}>
+            <Col xs={4} sm={4} md={4}>
               <FormControlAppends size="sm" postText="cm" value={1} />
             </Col>
-            <Col sm={4} md={4}>
+            <Col xs={4} sm={4} md={4}>
               <FormControlAppends size="sm" postText="cm" value={1} />
             </Col>
           </FormGroup>
