@@ -10,9 +10,12 @@ const {
   Select,
 } = Form;
 
+const { Feedback } = Control;
+
 export {
   Label as FormLabel,
   Control as FormControl,
+  Feedback as FormFeedback,
   FormControlAppends,
   RadioSelector,
   FormDoubleRange,

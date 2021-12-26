@@ -1,7 +1,8 @@
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 import { Card } from '../../../components/common';
 import {
   FormControlAppends,
+  FormFeedback,
   // FormControl,
   FormGroup,
   FormLabel,
@@ -13,16 +14,16 @@ import generalTexts from '../../../resources/constants/generalTexts';
 import typesOfGoods from '../../../resources/constants/typeOfGoods';
 
 type TFreightForm = {
-  onChange: React.ChangeEventHandler<HTMLInputElement | HTMLSelectElement>
+  onChange: React.ChangeEventHandler<HTMLInputElement | HTMLSelectElement>,
+  errors: Partial<Record<string, string>>,
+  values: Partial<Record<string, string | number>>,
 }
 
-const FreightForm: FC<TFreightForm> = ({ onChange }) => {
-  const [good, setGood] = useState(typesOfGoods[0].id);
+const FreightForm: FC<TFreightForm> = ({ onChange, errors, values }) => {
   const { newDelivery: { freightDetails: freightTexts } } = generalTexts;
 
   const handleSelectGood: React.ChangeEventHandler<HTMLInputElement> = (e) => {
     onChange(e);
-    setGood(e.target.value);
   };
 
   return (
@@ -38,7 +39,7 @@ const FreightForm: FC<TFreightForm> = ({ onChange }) => {
               <RadioSelector
                 name="freightGood"
                 options={typesOfGoods}
-                selected={good}
+                selected={values.freightGood.toString()}
                 onChange={handleSelectGood}
               />
             </Col>
@@ -55,9 +56,12 @@ const FreightForm: FC<TFreightForm> = ({ onChange }) => {
                 name="freightType"
                 size="sm"
                 onChange={onChange}
+                isInvalid={!!errors.freightType}
+                value={values.freightType}
               >
-                <option>Pallet</option>
+                <option value="pallet">Pallet</option>
               </FormSelect>
+              <FormFeedback type="invalid">{errors.freightType}</FormFeedback>
             </Col>
             <Col xs={6} sm={6} md={6}>
               <FormControlAppends
@@ -67,7 +71,10 @@ const FreightForm: FC<TFreightForm> = ({ onChange }) => {
                 preText="x"
                 size="sm"
                 onChange={onChange}
+                value={values.freightQuantity}
+                isInvalid={!!errors.freightQuantity}
               />
+              <FormFeedback type="invalid">{errors.freightQuantity}</FormFeedback>
             </Col>
           </FormGroup>
         </Col>
@@ -87,7 +94,10 @@ const FreightForm: FC<TFreightForm> = ({ onChange }) => {
                 size="sm"
                 postText="kg"
                 onChange={onChange}
+                value={values.freightWeight}
+                isInvalid={!!errors.freightWeight}
               />
+              <FormFeedback type="invalid">{errors.freightWeight}</FormFeedback>
             </Col>
           </FormGroup>
         </Col>
@@ -105,7 +115,10 @@ const FreightForm: FC<TFreightForm> = ({ onChange }) => {
                 size="sm"
                 postText="cm"
                 onChange={onChange}
+                value={values.freightHeight}
+                isInvalid={!!errors.freightHeight}
               />
+              <FormFeedback type="invalid">{errors.freightHeight}</FormFeedback>
             </Col>
             <Col xs={4} sm={4} md={4}>
               <FormControlAppends
@@ -115,7 +128,10 @@ const FreightForm: FC<TFreightForm> = ({ onChange }) => {
                 size="sm"
                 postText="cm"
                 onChange={onChange}
+                value={values.freightWidth}
+                isInvalid={!!errors.freightWidth}
               />
+              <FormFeedback type="invalid">{errors.freightWidth}</FormFeedback>
             </Col>
             <Col xs={4} sm={4} md={4}>
               <FormControlAppends
@@ -125,7 +141,10 @@ const FreightForm: FC<TFreightForm> = ({ onChange }) => {
                 size="sm"
                 postText="cm"
                 onChange={onChange}
+                value={values.freightDepth}
+                isInvalid={!!errors.freightDepth}
               />
+              <FormFeedback type="invalid">{errors.freightDepth}</FormFeedback>
             </Col>
           </FormGroup>
         </Col>
