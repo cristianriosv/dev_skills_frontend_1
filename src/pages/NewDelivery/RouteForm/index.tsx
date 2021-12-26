@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { Card } from '../../../components/common';
 import {
   FormControl,
@@ -9,7 +9,10 @@ import {
 import { Row, Col } from '../../../components/layout';
 import generalTexts from '../../../resources/constants/generalTexts';
 
-const RouteForm = () => {
+type TRouteForm = {
+  onChange: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+}
+const RouteForm: FC<TRouteForm> = ({ onChange }) => {
   const { newDelivery: { route: routeTexts } } = generalTexts;
   return (
     <Card title={routeTexts.title}>
@@ -19,13 +22,22 @@ const RouteForm = () => {
           :
         </FormLabel>
         <Col sm={5} md={4}>
-          <FormSelect size="sm">
+          <FormSelect
+            name="pickCountry"
+            size="sm"
+            onChange={onChange}
+          >
             <option>{routeTexts.countryPlaceholder}</option>
-            <option>Netherlands (NL)</option>
+            <option value="NL">Netherlands (NL)</option>
           </FormSelect>
         </Col>
         <Col sm={7} md={6}>
-          <FormControl size="sm" placeholder={routeTexts.addressPlaceholder} />
+          <FormControl
+            name="pickAdress"
+            size="sm"
+            placeholder={routeTexts.addressPlaceholder}
+            onChange={onChange}
+          />
         </Col>
       </FormGroup>
       <FormGroup as={Row}>
@@ -34,13 +46,22 @@ const RouteForm = () => {
           :
         </FormLabel>
         <Col sm={5} md={4}>
-          <FormSelect size="sm">
+          <FormSelect
+            name="deliveryCountry"
+            size="sm"
+            onChange={onChange}
+          >
             <option>{routeTexts.countryPlaceholder}</option>
             <option>Netherlands (NL)</option>
           </FormSelect>
         </Col>
         <Col sm={7} md={6}>
-          <FormControl size="sm" placeholder={routeTexts.addressPlaceholder} />
+          <FormControl
+            name="deliveryAddress"
+            size="sm"
+            placeholder={routeTexts.addressPlaceholder}
+            onChange={onChange}
+          />
         </Col>
       </FormGroup>
     </Card>

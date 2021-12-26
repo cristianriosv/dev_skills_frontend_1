@@ -4,6 +4,7 @@ import React, {
 
 type TAppConfig = {
   toggleMenu: boolean,
+  windowHeight: number,
 };
 
 type TAppContext = {
@@ -14,6 +15,7 @@ type TAppContext = {
 const AppContext = createContext<TAppContext>({
   appConfig: {
     toggleMenu: true,
+    windowHeight: 0,
   },
   setAppConfig: () => {},
 });
@@ -21,6 +23,7 @@ const AppContext = createContext<TAppContext>({
 const AppProvider: FC = ({ children }) => {
   const [appConfig, setAppConfig] = useState({
     toggleMenu: true,
+    windowHeight: window.innerHeight,
   });
   const config: TAppContext = useMemo<TAppContext>(
     () => ({ appConfig, setAppConfig }),

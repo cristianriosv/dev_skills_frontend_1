@@ -12,17 +12,23 @@ type TMasterLayout = {
 const MasterLayout: FC<TMasterLayout> = ({ sideBar, topBar, children }) => {
   const [prevWidth, setPrevWidth] = useState(0);
   const { appConfig, setAppConfig } = useAppContext();
-  const { toggleMenu } = appConfig;
+  const { toggleMenu, windowHeight } = appConfig;
 
   const handleWindowResize = useCallback(() => {
-    if (Math.abs(window.innerWidth - prevWidth) > 40 && window.innerWidth < 763 && toggleMenu) {
-      setPrevWidth(window.innerWidth);
-      setAppConfig({ ...appConfig, toggleMenu: false });
+    let newConfig = {};
+    if (window.innerWidth - prevWidth < 0 && window.innerWidth <= 763 && toggleMenu) {
+      newConfig = { ...newConfig, toggleMenu: false };
     }
-    if (Math.abs(window.innerWidth - prevWidth) > 40 && window.innerWidth > 763 && !toggleMenu) {
-      setPrevWidth(window.innerWidth);
-      setAppConfig({ ...appConfig, toggleMenu: true });
+    if (window.innerWidth - prevWidth > 0 && window.innerWidth > 763 && !toggleMenu) {
+      newConfig = { ...newConfig, toggleMenu: true };
     }
+    if (window.innerHeight !== windowHeight) {
+      newConfig = { ...newConfig, windowHeight: window.innerHeight };
+    }
+    if (Object.keys(newConfig).length) {
+      setAppConfig({ ...appConfig, ...newConfig });
+    }
+    setPrevWidth(window.innerWidth);
   }, [toggleMenu, setAppConfig, prevWidth, setPrevWidth]);
 
   useEffect(() => {

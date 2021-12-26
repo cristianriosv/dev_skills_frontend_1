@@ -6,7 +6,7 @@
     @media (max-width: 1200px) { @content ; }
  }
    @else if $where == medium {
-    @media (max-width: 768px) { @content ; }
+    @media (max-width: 764px) { @content ; }
  }
   @else if $where == small {
     @media (max-width: 576px)  { @content ; }

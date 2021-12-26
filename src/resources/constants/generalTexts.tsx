@@ -10,6 +10,8 @@ const generalTexts = {
     },
   },
   newDelivery: {
+    sendDelivery: 'Schedule Delivery',
+    resetForm: 'Reset form',
     route: {
       title: 'Route',
       pickup: 'Pickup',

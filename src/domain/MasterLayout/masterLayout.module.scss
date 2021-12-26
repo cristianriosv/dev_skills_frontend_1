@@ -4,15 +4,21 @@
   display: flex;
   .mainContent {
     width: calc(100% - $side-bar-width);
+    animation: hideMenu 0.3s ease forwards;
     &.toggleMenu {
-      width: calc(100% - $side-bar-width-toggle);
+      animation: toggleMenu 0.3s ease forwards;
     }
     @include breakpoint(medium) {
       width: 100%;
+      animation: none;
       padding-left: $side-bar-width;
       &.toggleMenu {
         width: 100%;
+        animation: none;
       }
     }
   }
 }
+
+@include widthAnimation(hideMenu, calc(100% - $side-bar-width-toggle), calc(100% - $side-bar-width));
+@include widthAnimation(toggleMenu, calc(100% - $side-bar-width), calc(100% - $side-bar-width-toggle));

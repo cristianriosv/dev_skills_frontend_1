@@ -10,10 +10,11 @@ import { Badge } from 'react-bootstrap';
 import styles from './formDoubleRange.module.scss';
 
 export type TFormDoubleRange = {
-  min?: number;
-  max?: number;
-  onChange?: Function;
-  showTags?: boolean
+  min?: number,
+  max?: number,
+  onChange?: Function,
+  showTags?: boolean,
+  name?: string,
 }
 
 const FormDoubleRange: FC<TFormDoubleRange> = ({
@@ -21,6 +22,7 @@ const FormDoubleRange: FC<TFormDoubleRange> = ({
   max = 100,
   onChange,
   showTags = true,
+  name = 'range',
 }) => {
   const [minVal, setMinVal] = useState(min);
   const [maxVal, setMaxVal] = useState(max);
@@ -55,13 +57,14 @@ const FormDoubleRange: FC<TFormDoubleRange> = ({
   }, [maxVal, getPercent]);
 
   // Get min and max values when their state changes
-  useEffect(() => {
-    if (onChange) onChange({ min: minVal, max: maxVal });
-  }, [minVal, maxVal, onChange]);
+  // useEffect(() => {
+  //   if (onChange) onChange(minVal, maxVal);
+  // }, [minVal, maxVal, onChange]);
 
   return (
     <div className={styles.container}>
       <input
+        name={`${name}From`}
         type="range"
         min={min}
         max={max}
@@ -69,11 +72,15 @@ const FormDoubleRange: FC<TFormDoubleRange> = ({
         ref={minValRef}
         onChange={(event: ChangeEvent<HTMLInputElement>) => {
           const value = Math.min(+event.target.value, maxVal - 1);
+          const simulateEvent = { ...event };
+          simulateEvent.target.value = value.toString();
+          if (onChange) onChange(simulateEvent);
           setMinVal(value);
         }}
         className={`${styles.thumb} ${styles.thumb__zindex_3} ${minVal > max - 100 && styles.thumb__zindex_5}`}
       />
       <input
+        name={`${name}To`}
         type="range"
         min={min}
         max={max}
@@ -81,6 +88,9 @@ const FormDoubleRange: FC<TFormDoubleRange> = ({
         ref={maxValRef}
         onChange={(event: ChangeEvent<HTMLInputElement>) => {
           const value = Math.max(+event.target.value, minVal + 1);
+          const simulateEvent = { ...event };
+          simulateEvent.target.value = value.toString();
+          if (onChange) onChange(simulateEvent);
           setMaxVal(value);
         }}
         className={`${styles.thumb} ${styles.thumb__zindex_4}`}

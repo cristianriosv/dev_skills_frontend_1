@@ -5,6 +5,8 @@ import { Form, InputGroup, FormControlProps } from 'react-bootstrap';
 export interface IFormControl extends FormControlProps {
   postText?: string,
   preText?: string,
+  name?: string,
+  onChange?: React.ChangeEventHandler<HTMLInputElement>,
 }
 
 const FormControl: FC<IFormControl> = ({ postText, preText, ...rest }) => {

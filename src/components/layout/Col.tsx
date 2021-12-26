@@ -11,6 +11,7 @@ const Col: FC<TCol> = ({
   lg,
   xl,
   xxl,
+  className,
 }) => (
   <ColLibrary
     xs={xs}
@@ -19,6 +20,7 @@ const Col: FC<TCol> = ({
     lg={lg}
     xl={xl}
     xxl={xxl}
+    className={className}
   >
     {children}
   </ColLibrary>
