@@ -52,6 +52,7 @@ const FreightForm: FC<TFreightForm> = ({ onChange, errors, values }) => {
             <Col xs={6} sm={6} md={6}>
               <FormControl
                 name="freightType"
+                aria-label="freightType"
                 as="select"
                 size="sm"
                 onChange={onChange}
@@ -67,6 +68,7 @@ const FreightForm: FC<TFreightForm> = ({ onChange, errors, values }) => {
             <Col xs={6} sm={6} md={6}>
               <FormControl
                 name="freightQuantity"
+                aria-label="freightQuantity"
                 placeholder="0"
                 type="number"
                 preText="x"
@@ -90,6 +92,7 @@ const FreightForm: FC<TFreightForm> = ({ onChange, errors, values }) => {
             <Col sm={4} md={12}>
               <FormControl
                 name="freightWeight"
+                aria-label="freightWeight"
                 placeholder="0"
                 type="number"
                 size="sm"
@@ -111,6 +114,7 @@ const FreightForm: FC<TFreightForm> = ({ onChange, errors, values }) => {
             <Col xs={4} sm={4} md={4}>
               <FormControl
                 name="freightHeight"
+                aria-label="freightHeight"
                 placeholder="0"
                 type="number"
                 size="sm"
@@ -124,6 +128,7 @@ const FreightForm: FC<TFreightForm> = ({ onChange, errors, values }) => {
             <Col xs={4} sm={4} md={4}>
               <FormControl
                 name="freightWidth"
+                aria-label="freightWidth"
                 placeholder="0"
                 type="number"
                 size="sm"
@@ -137,6 +142,7 @@ const FreightForm: FC<TFreightForm> = ({ onChange, errors, values }) => {
             <Col xs={4} sm={4} md={4}>
               <FormControl
                 name="freightDepth"
+                aria-label="freightDepth"
                 placeholder="0"
                 type="number"
                 size="sm"

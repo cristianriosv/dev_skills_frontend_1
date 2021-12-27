@@ -7,10 +7,11 @@ export type TButton = {
   onClick?: React.MouseEventHandler<HTMLButtonElement>,
   type?: 'button' | 'submit' | 'reset',
   disabled?: boolean,
+  'aria-label'?: string,
 }
 
 const Button: FC<TButton> = ({
-  children, variant, className, onClick, type, disabled,
+  children, variant, className, onClick, type, disabled, 'aria-label': ariaLabel,
 }) => (
   <ButtonLibrary
     variant={variant}
@@ -18,6 +19,7 @@ const Button: FC<TButton> = ({
     onClick={onClick}
     type={type}
     disabled={disabled}
+    aria-label={ariaLabel}
   >
     {children}
   </ButtonLibrary>

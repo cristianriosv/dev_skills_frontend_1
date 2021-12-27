@@ -11,7 +11,6 @@ export interface IFormControl extends FormControlProps {
   name?: string,
   onChange?: React.ChangeEventHandler<HTMLInputElement>,
   error?: string,
-  // type?: string,
 }
 
 const FormControl: FC<IFormControl> = ({

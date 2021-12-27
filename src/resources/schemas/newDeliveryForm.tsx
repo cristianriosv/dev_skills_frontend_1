@@ -21,26 +21,6 @@ export const newDeliveryInitialData: TData<{}> = {
   deliveryHourTo: 20,
 };
 
-// export const newDeliveryInitialData: TData<{}> = {
-//   pickupCountry: 'NL',
-//   pickupAddress: 'asdfsd asdf asdf 234234',
-//   deliveryCountry: 'NL',
-//   deliveryAddress: 'asdfasdf asdf asdf 234234',
-//   freightGood: 'paper',
-//   freightType: 'pallet',
-//   freightQuantity: 1,
-//   freightWeight: 1,
-//   freightHeight: 1,
-//   freightWidth: 1,
-//   freightDepth: 1,
-//   pickupDate: new Date().getTime().toString(),
-//   pickupHourFrom: 8,
-//   pickupHourTo: 20,
-//   deliveryDate: new Date().getTime().toString(),
-//   deliveryHourFrom: 8,
-//   deliveryHourTo: 20,
-// };
-
 export const newDeliverySchema = {
   pickupCountry: {
     required: {

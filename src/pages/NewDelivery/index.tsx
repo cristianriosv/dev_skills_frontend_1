@@ -75,10 +75,10 @@ const NewDelivery: FC = () => {
             </Row>
             <Row className="my-3">
               <Col className="d-flex justify-content-end">
-                <Button type="button" variant="secondary" className="mx-1" onClick={() => resetForm()}>
+                <Button type="button" aria-label="reset" variant="secondary" className="mx-1" onClick={() => resetForm()}>
                   {generalTexts.newDelivery.resetForm}
                 </Button>
-                <Button type="submit" disabled={submitting}>
+                <Button type="submit" disabled={submitting} aria-label="submit">
                   <Icon icon="truck" color="light" height="20px" />
                   {' '}
                   {!submitting ? generalTexts.newDelivery.sendDelivery : generalTexts.loading}

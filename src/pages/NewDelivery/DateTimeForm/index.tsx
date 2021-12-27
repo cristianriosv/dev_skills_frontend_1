@@ -30,6 +30,8 @@ const DateTimeForm: FC<TDateTimeForm> = ({ onChange, errors, values }) => {
             <Col sm={6} md={4}>
               <FormControl
                 name="pickupDate"
+                aria-label="pickupDate"
+                role="textbox"
                 type="date"
                 size="sm"
                 onChange={onChange}
@@ -59,6 +61,8 @@ const DateTimeForm: FC<TDateTimeForm> = ({ onChange, errors, values }) => {
             <Col sm={6} md={4}>
               <FormControl
                 name="deliveryDate"
+                aria-label="deliveryDate"
+                role="textbox"
                 type="date"
                 size="sm"
                 onChange={onChange}

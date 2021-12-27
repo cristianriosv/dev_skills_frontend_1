@@ -26,6 +26,7 @@ const RouteForm: FC<TRouteForm> = ({ onChange, errors, values }) => {
         <Col sm={5} md={4}>
           <FormControl
             name="pickupCountry"
+            aria-label="pickupCountry"
             size="sm"
             onChange={onChange}
             isInvalid={!!errors.pickupCountry}
@@ -42,6 +43,7 @@ const RouteForm: FC<TRouteForm> = ({ onChange, errors, values }) => {
         <Col sm={7} md={6}>
           <FormControl
             name="pickupAddress"
+            aria-label="pickupAddress"
             size="sm"
             placeholder={routeTexts.addressPlaceholder}
             onChange={onChange}
@@ -59,6 +61,7 @@ const RouteForm: FC<TRouteForm> = ({ onChange, errors, values }) => {
         <Col sm={5} md={4}>
           <FormControl
             name="deliveryCountry"
+            aria-label="deliveryCountry"
             as="select"
             size="sm"
             onChange={onChange}
@@ -75,6 +78,7 @@ const RouteForm: FC<TRouteForm> = ({ onChange, errors, values }) => {
         <Col sm={7} md={6}>
           <FormControl
             name="deliveryAddress"
+            aria-label="deliveryAddress"
             size="sm"
             placeholder={routeTexts.addressPlaceholder}
             onChange={onChange}

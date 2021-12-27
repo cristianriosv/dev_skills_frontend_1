@@ -63,6 +63,10 @@
     "testEnvironment": "jsdom",
     "setupFilesAfterEnv": [
       "<rootDir>/tests.setup.ts"
-    ]
+    ],
+    "moduleNameMapper": {
+      "\\.(scss|css)$": "<rootDir>/__mocks__/style.mock.tsx",
+      "\\.(svg|jpg|png|gif)$": "<rootDir>/__mocks__/file.mock.tsx"
+    }
   }
 }
