@@ -41,11 +41,11 @@ const generalTexts = {
       weight: 'Weight',
       weightUnit: 'Kg',
       formErrors: {
-        quantity: 'Quantity not valid',
-        weight: 'Weight not valid',
-        depth: 'Depth not valid',
-        width: 'Width not valid',
-        height: 'Height not valid',
+        quantity: 'Quantity is not valid',
+        weight: 'Weight is not valid',
+        depth: 'Depth is not valid',
+        width: 'Width is not valid',
+        height: 'Height is not valid',
       },
     },
     dateAndTime: {
