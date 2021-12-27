@@ -2,10 +2,13 @@
   "name": "dev_skills_frontend_1",
   "version": "1.0.0",
   "description": "",
+  "homepage": "https://cristianriosv.github.io/dev_skills_frontend_1/",
   "scripts": {
     "build": "webpack --mode production",
     "start": "webpack-dev-server --mode development",
-    "test": "jest"
+    "test": "jest",
+    "predeploy": "npm run build",
+    "deployGH": "gh-pages -d dist"
   },
   "keywords": [],
   "author": "cristianriosv@gmail.com",
@@ -39,6 +42,7 @@
     "eslint-plugin-react": "^7.28.0",
     "eslint-plugin-react-hooks": "^4.3.0",
     "eslint-webpack-plugin": "^3.1.1",
+    "gh-pages": "^3.2.3",
     "html-webpack-plugin": "^5.5.0",
     "jest": "^27.4.5",
     "process": "^0.11.10",

@@ -75,6 +75,7 @@ module.exports = (env, { mode }) => ({
     path: path.resolve(__dirname, 'dist'),
     clean: true,
   },
+  devtool: 'source-map',
   plugins: [
     new EslintWebpackPlugin({
       extensions: ['tsx'],
@@ -83,7 +84,7 @@ module.exports = (env, { mode }) => ({
       process: 'process/browser',
     }),
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('development'),
+      'process.env.NODE_ENV': JSON.stringify(mode),
     }),
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, 'public/index.html'),
