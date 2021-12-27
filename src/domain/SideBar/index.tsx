@@ -13,7 +13,7 @@ const SideBar = () => {
   const location = useLocation();
   const [active, setActive] = useState(location.pathname);
   const { appConfig, setAppConfig } = useAppContext();
-  const { toggleMenu } = appConfig;
+  const { toggleMenu, limitToggle } = appConfig;
 
   const changeToggleMenu = () => {
     setAppConfig({ ...appConfig, toggleMenu: !toggleMenu });
@@ -24,6 +24,12 @@ const SideBar = () => {
       case 'myDeliveries': return 2;
       case 'history': return 5;
       default: return null;
+    }
+  };
+
+  const handleClick = () => {
+    if (window.innerWidth < limitToggle && toggleMenu) {
+      setAppConfig({ ...appConfig, toggleMenu: false });
     }
   };
 
@@ -41,7 +47,7 @@ const SideBar = () => {
       <ButtonToggle onClick={changeToggleMenu} toggleMenu={toggleMenu} />
       <div>
         {sideBarLinks.map((link) => (
-          <Link to={link.path} key={link.id}>
+          <Link to={link.path} key={link.id} onClick={handleClick}>
             <ButtonLink
               toggleMenu={toggleMenu}
               active={link.path === active}

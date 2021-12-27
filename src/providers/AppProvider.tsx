@@ -6,6 +6,7 @@ import { TFeedback } from '../domain/Feedback';
 type TAppConfig = {
   toggleMenu: boolean,
   windowHeight: number,
+  limitToggle: number,
 };
 
 type TAppContext = {
@@ -19,6 +20,7 @@ const AppContext = createContext<TAppContext>({
   appConfig: {
     toggleMenu: true,
     windowHeight: 0,
+    limitToggle: 763,
   },
   setAppConfig: () => {},
   feedback: {},
@@ -29,6 +31,7 @@ const AppProvider: FC = ({ children }) => {
   const [appConfig, setAppConfig] = useState({
     toggleMenu: true,
     windowHeight: window.innerHeight,
+    limitToggle: 763,
   });
   const [feedback, setFeedback] = useState<TFeedback>({
     show: false,

@@ -10,16 +10,16 @@ type TMasterLayout = {
 }
 
 const MasterLayout: FC<TMasterLayout> = ({ sideBar, topBar, children }) => {
-  const [prevWidth, setPrevWidth] = useState(0);
+  const [prevWidth, setPrevWidth] = useState(1024);
   const { appConfig, setAppConfig } = useAppContext();
-  const { toggleMenu, windowHeight } = appConfig;
+  const { toggleMenu, windowHeight, limitToggle } = appConfig;
 
   const handleWindowResize = useCallback(() => {
     let newConfig = {};
-    if (window.innerWidth - prevWidth < 0 && window.innerWidth <= 763 && toggleMenu) {
+    if (window.innerWidth - prevWidth < 0 && window.innerWidth <= limitToggle && toggleMenu) {
       newConfig = { ...newConfig, toggleMenu: false };
     }
-    if (window.innerWidth - prevWidth > 0 && window.innerWidth > 763 && !toggleMenu) {
+    if (window.innerWidth - prevWidth > 0 && window.innerWidth > limitToggle && !toggleMenu) {
       newConfig = { ...newConfig, toggleMenu: true };
     }
     if (window.innerHeight !== windowHeight) {
