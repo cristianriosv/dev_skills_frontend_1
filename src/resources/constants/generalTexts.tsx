@@ -59,7 +59,11 @@ const generalTexts = {
     },
     success: {
       title: 'Delivery scheduled!',
-      description: 'You have scheduled a new delivery, achieved one less truck on the roads and saved 35 kg of CO2',
+      description: 'You have scheduled a new delivery, achieved one less empty truck on the roads and saved 35 kg of CO2',
+    },
+    fail: {
+      title: 'There are some mistakes:',
+      description: 'Please check the form and try again.',
     },
   },
   myDeliveries: {

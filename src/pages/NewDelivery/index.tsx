@@ -37,6 +37,14 @@ const NewDelivery: FC = () => {
         setSubmitting(false);
       }, 1000);
     },
+    failSubmit: () => {
+      setFeedback({
+        ...feedback,
+        show: true,
+        title: generalTexts.newDelivery.fail.title,
+        description: generalTexts.newDelivery.fail.description,
+      });
+    },
   });
 
   return (

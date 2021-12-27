@@ -21,6 +21,7 @@ const useFormValidation = <T extends Record<keyof T, any> = {}> (
     schema?: TUseFormValidationSchema<T>,
     initData?: TData<T>,
     submit?: Function,
+    failSubmit?: Function,
   },
 ) => {
   const [errors, setErrors] = useState<TError>({});
@@ -82,6 +83,7 @@ const useFormValidation = <T extends Record<keyof T, any> = {}> (
     setShowAllErrors(true);
     const validate = validateForm(true);
     if (validate && data?.submit) data.submit();
+    else if (!validate && data?.failSubmit) data.failSubmit();
   };
 
   return {

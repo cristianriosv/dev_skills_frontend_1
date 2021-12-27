@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { HashRouter, Routes, Route } from 'react-router-dom';
 import config from './resources/constants/config';
 import {
   Feedback, MasterLayout, SideBar, TopBar,
@@ -8,7 +8,7 @@ import { MyDeliveries, NewDelivery, History } from './pages';
 import './styles/global.scss';
 
 const App = () => (
-  <BrowserRouter basename={config.basePath}>
+  <HashRouter basename={config.basePath}>
     <Feedback />
     <MasterLayout sideBar={<SideBar />} topBar={<TopBar />}>
       <Routes>
@@ -17,7 +17,7 @@ const App = () => (
         <Route path="/history" element={<History />} />
       </Routes>
     </MasterLayout>
-  </BrowserRouter>
+  </HashRouter>
 );
 
 export default App;
