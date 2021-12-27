@@ -2,6 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const EslintWebpackPlugin = require('eslint-webpack-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const webpack = require('webpack');
 const sass = require('sass');
 
 const typescriptRules = {
@@ -56,6 +57,7 @@ module.exports = (env, { mode }) => ({
   devServer: {
     port: 3000,
     open: true,
+    historyApiFallback: true,
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js'],
@@ -76,6 +78,12 @@ module.exports = (env, { mode }) => ({
   plugins: [
     new EslintWebpackPlugin({
       extensions: ['tsx'],
+    }),
+    new webpack.ProvidePlugin({
+      process: 'process/browser',
+    }),
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify('development'),
     }),
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, 'public/index.html'),

@@ -5,7 +5,10 @@
       "module": "es6",
       "moduleResolution": "node",
       "jsx": "react",
+      "lib": ["dom", "esnext"],
+      "esModuleInterop": true,
       "noImplicitAny": true,
       "allowSyntheticDefaultImports": true,
-    }
+    },
+    "exclude": ["node_modules"]
   }

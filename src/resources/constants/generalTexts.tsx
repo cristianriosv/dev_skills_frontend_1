@@ -10,6 +10,8 @@ const generalTexts = {
     },
   },
   newDelivery: {
+    title: 'New Delivery',
+    description: 'Here you can schedule a new delivery, you have to specify the pickup and delivery route, the freight details, and pickup/delivery date and time available.',
     sendDelivery: 'Schedule Delivery',
     resetForm: 'Reset form',
     route: {
@@ -39,11 +41,11 @@ const generalTexts = {
       weight: 'Weight',
       weightUnit: 'Kg',
       formErrors: {
-        quantity: 'Please indicate quantity',
-        weight: 'Please indicate weight',
-        depth: 'Please indicate depth',
-        width: 'Please indicate depth',
-        height: 'Please indicate depth',
+        quantity: 'Quantity not valid',
+        weight: 'Weight not valid',
+        depth: 'Depth not valid',
+        width: 'Width not valid',
+        height: 'Height not valid',
       },
     },
     dateAndTime: {
@@ -55,8 +57,20 @@ const generalTexts = {
         deliveryDate: 'Please select delivery date',
       },
     },
+    success: {
+      title: 'Delivery scheduled!',
+      description: 'You have scheduled a new delivery, achieved one less truck on the roads and saved 35 kg of CO2',
+    },
   },
-  loading: 'Cargando...',
+  myDeliveries: {
+    title: 'My Deliveries',
+    description: 'Here you can view your active current deliveries.',
+  },
+  history: {
+    title: 'History',
+    description: 'Here you can view your completed deliveries.',
+  },
+  loading: 'Loading...',
   formErrors: {
     fieldRequired: 'This field is required',
   },

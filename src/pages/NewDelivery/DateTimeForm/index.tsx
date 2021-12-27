@@ -3,7 +3,6 @@ import { Card } from '../../../components/common';
 import {
   FormControl,
   FormDoubleRange,
-  FormFeedback,
   FormGroup,
   FormLabel,
 } from '../../../components/form';
@@ -18,12 +17,6 @@ type TDateTimeForm = {
 
 const DateTimeForm: FC<TDateTimeForm> = ({ onChange, errors, values }) => {
   const { newDelivery: { dateAndTime: dateAndTimeTexts } } = generalTexts;
-
-  // const handleChangeHours = (min: number, max: number) => {
-  //   // eslint-disable-next-line no-console
-  //   console.log(min, max);
-  //   // onChange();
-  // };
 
   return (
     <Card title={dateAndTimeTexts.title}>
@@ -42,8 +35,8 @@ const DateTimeForm: FC<TDateTimeForm> = ({ onChange, errors, values }) => {
                 onChange={onChange}
                 isInvalid={!!errors.pickupDate}
                 value={values.pickupDate}
+                error={errors.pickupDate}
               />
-              <FormFeedback type="invalid">{errors.pickupDate}</FormFeedback>
             </Col>
             <Col sm={6} md={6}>
               <FormDoubleRange
@@ -71,8 +64,8 @@ const DateTimeForm: FC<TDateTimeForm> = ({ onChange, errors, values }) => {
                 onChange={onChange}
                 isInvalid={!!errors.deliveryDate}
                 value={values.deliveryDate}
+                error={errors.deliveryDate}
               />
-              <FormFeedback type="invalid">{errors.deliveryDate}</FormFeedback>
             </Col>
             <Col sm={6} md={6}>
               <FormDoubleRange

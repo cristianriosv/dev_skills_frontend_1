@@ -1,15 +1,23 @@
 import React from 'react';
-import { MasterLayout, SideBar, TopBar } from './domain';
-import { NewDelivery } from './pages';
-import AppProvider from './providers/AppProvider';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import config from './resources/constants/config';
+import {
+  Feedback, MasterLayout, SideBar, TopBar,
+} from './domain';
+import { MyDeliveries, NewDelivery, History } from './pages';
 import './styles/global.scss';
 
 const App = () => (
-  <AppProvider>
+  <BrowserRouter basename={config.basePath}>
+    <Feedback />
     <MasterLayout sideBar={<SideBar />} topBar={<TopBar />}>
-      <NewDelivery />
+      <Routes>
+        <Route path="/" element={<NewDelivery />} />
+        <Route path="/my-deliveries" element={<MyDeliveries />} />
+        <Route path="/history" element={<History />} />
+      </Routes>
     </MasterLayout>
-  </AppProvider>
+  </BrowserRouter>
 );
 
 export default App;

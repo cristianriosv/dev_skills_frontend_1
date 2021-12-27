@@ -1,17 +1,15 @@
 import React, { FC } from 'react';
 import { Card } from '../../../components/common';
 import {
-  FormControlAppends,
-  FormFeedback,
-  // FormControl,
   FormGroup,
   FormLabel,
-  FormSelect,
+  FormControl,
   RadioSelector,
 } from '../../../components/form';
 import { Row, Col } from '../../../components/layout';
 import generalTexts from '../../../resources/constants/generalTexts';
 import typesOfGoods from '../../../resources/constants/typeOfGoods';
+import pallets from '../../../resources/data/pallets';
 
 type TFreightForm = {
   onChange: React.ChangeEventHandler<HTMLInputElement | HTMLSelectElement>,
@@ -52,19 +50,22 @@ const FreightForm: FC<TFreightForm> = ({ onChange, errors, values }) => {
               :
             </FormLabel>
             <Col xs={6} sm={6} md={6}>
-              <FormSelect
+              <FormControl
                 name="freightType"
+                as="select"
                 size="sm"
                 onChange={onChange}
                 isInvalid={!!errors.freightType}
                 value={values.freightType}
+                error={errors.freightType}
               >
-                <option value="pallet">Pallet</option>
-              </FormSelect>
-              <FormFeedback type="invalid">{errors.freightType}</FormFeedback>
+                {pallets.map((pallet) => (
+                  <option key={pallet.id} value={pallet.id}>{pallet.label}</option>
+                ))}
+              </FormControl>
             </Col>
             <Col xs={6} sm={6} md={6}>
-              <FormControlAppends
+              <FormControl
                 name="freightQuantity"
                 placeholder="0"
                 type="number"
@@ -73,8 +74,8 @@ const FreightForm: FC<TFreightForm> = ({ onChange, errors, values }) => {
                 onChange={onChange}
                 value={values.freightQuantity}
                 isInvalid={!!errors.freightQuantity}
+                error={errors.freightQuantity}
               />
-              <FormFeedback type="invalid">{errors.freightQuantity}</FormFeedback>
             </Col>
           </FormGroup>
         </Col>
@@ -87,7 +88,7 @@ const FreightForm: FC<TFreightForm> = ({ onChange, errors, values }) => {
               :
             </FormLabel>
             <Col sm={4} md={12}>
-              <FormControlAppends
+              <FormControl
                 name="freightWeight"
                 placeholder="0"
                 type="number"
@@ -96,8 +97,8 @@ const FreightForm: FC<TFreightForm> = ({ onChange, errors, values }) => {
                 onChange={onChange}
                 value={values.freightWeight}
                 isInvalid={!!errors.freightWeight}
+                error={errors.freightWeight}
               />
-              <FormFeedback type="invalid">{errors.freightWeight}</FormFeedback>
             </Col>
           </FormGroup>
         </Col>
@@ -108,7 +109,7 @@ const FreightForm: FC<TFreightForm> = ({ onChange, errors, values }) => {
               :
             </FormLabel>
             <Col xs={4} sm={4} md={4}>
-              <FormControlAppends
+              <FormControl
                 name="freightHeight"
                 placeholder="0"
                 type="number"
@@ -117,11 +118,11 @@ const FreightForm: FC<TFreightForm> = ({ onChange, errors, values }) => {
                 onChange={onChange}
                 value={values.freightHeight}
                 isInvalid={!!errors.freightHeight}
+                error={errors.freightHeight}
               />
-              <FormFeedback type="invalid">{errors.freightHeight}</FormFeedback>
             </Col>
             <Col xs={4} sm={4} md={4}>
-              <FormControlAppends
+              <FormControl
                 name="freightWidth"
                 placeholder="0"
                 type="number"
@@ -130,11 +131,11 @@ const FreightForm: FC<TFreightForm> = ({ onChange, errors, values }) => {
                 onChange={onChange}
                 value={values.freightWidth}
                 isInvalid={!!errors.freightWidth}
+                error={errors.freightWidth}
               />
-              <FormFeedback type="invalid">{errors.freightWidth}</FormFeedback>
             </Col>
             <Col xs={4} sm={4} md={4}>
-              <FormControlAppends
+              <FormControl
                 name="freightDepth"
                 placeholder="0"
                 type="number"
@@ -143,8 +144,8 @@ const FreightForm: FC<TFreightForm> = ({ onChange, errors, values }) => {
                 onChange={onChange}
                 value={values.freightDepth}
                 isInvalid={!!errors.freightDepth}
+                error={errors.freightDepth}
               />
-              <FormFeedback type="invalid">{errors.freightDepth}</FormFeedback>
             </Col>
           </FormGroup>
         </Col>

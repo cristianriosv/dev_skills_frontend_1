@@ -12,7 +12,7 @@ import FreightForm from './FreightForm';
 import RouteForm from './RouteForm';
 
 const NewDelivery: FC = () => {
-  const { appConfig: { windowHeight } } = useAppContext();
+  const { appConfig: { windowHeight }, feedback, setFeedback } = useAppContext();
   const [submitting, setSubmitting] = useState(false);
 
   const {
@@ -26,11 +26,16 @@ const NewDelivery: FC = () => {
     initData: newDeliveryInitialData,
     submit: () => {
       setSubmitting(true);
-      // eslint-disable-next-line no-console
-      console.log(values);
       setTimeout(() => {
+        setFeedback({
+          ...feedback,
+          show: true,
+          title: generalTexts.newDelivery.success.title,
+          description: generalTexts.newDelivery.success.description,
+        });
+        resetForm();
         setSubmitting(false);
-      }, 3000);
+      }, 1000);
     },
   });
 
@@ -38,6 +43,12 @@ const NewDelivery: FC = () => {
     <Container fluid>
       <Row>
         <Col sm={12} md={12} lg={7} xl={6} xxl={6}>
+          <Row className="py-3">
+            <Col sm={12}>
+              <h3>{generalTexts.newDelivery.title}</h3>
+              <p>{generalTexts.newDelivery.description}</p>
+            </Col>
+          </Row>
           <Form onSubmit={handleSubmit}>
             <Row>
               <Col>

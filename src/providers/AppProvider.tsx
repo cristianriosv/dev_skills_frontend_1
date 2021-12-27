@@ -1,6 +1,7 @@
 import React, {
   FC, createContext, useState, useMemo, useContext,
 } from 'react';
+import { TFeedback } from '../domain/Feedback';
 
 type TAppConfig = {
   toggleMenu: boolean,
@@ -10,6 +11,8 @@ type TAppConfig = {
 type TAppContext = {
   appConfig: TAppConfig,
   setAppConfig: React.Dispatch<React.SetStateAction<TAppConfig>>,
+  feedback: TFeedback,
+  setFeedback: React.Dispatch<React.SetStateAction<TFeedback>>,
 };
 
 const AppContext = createContext<TAppContext>({
@@ -18,6 +21,8 @@ const AppContext = createContext<TAppContext>({
     windowHeight: 0,
   },
   setAppConfig: () => {},
+  feedback: {},
+  setFeedback: () => {},
 });
 
 const AppProvider: FC = ({ children }) => {
@@ -25,9 +30,17 @@ const AppProvider: FC = ({ children }) => {
     toggleMenu: true,
     windowHeight: window.innerHeight,
   });
+  const [feedback, setFeedback] = useState<TFeedback>({
+    show: false,
+    title: '',
+    description: '',
+    canUserClose: true,
+  });
   const config: TAppContext = useMemo<TAppContext>(
-    () => ({ appConfig, setAppConfig }),
-    [appConfig],
+    () => ({
+      appConfig, setAppConfig, feedback, setFeedback,
+    }),
+    [appConfig, feedback],
   );
 
   return (

@@ -2,6 +2,7 @@ module.exports = {
   env: {
     browser: true,
     es2021: true,
+    'jest/globals': true,
   },
   settings: {
     'import/resolver': {
@@ -23,6 +24,7 @@ module.exports = {
   plugins: [
     'react',
     '@typescript-eslint',
+    'jest',
   ],
   rules: {
     'linebreak-style': ['error', 'windows'],
@@ -42,5 +44,6 @@ module.exports = {
         tsx: 'never',
       },
     ],
+    'import/no-extraneous-dependencies': ['error', { devDependencies: ['**/*tests.setup.ts', '**/*.test.ts', '**/*.test.tsx'] }],
   },
 };

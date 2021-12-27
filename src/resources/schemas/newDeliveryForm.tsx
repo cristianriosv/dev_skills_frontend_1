@@ -21,6 +21,26 @@ export const newDeliveryInitialData: TData<{}> = {
   deliveryHourTo: 20,
 };
 
+// export const newDeliveryInitialData: TData<{}> = {
+//   pickupCountry: 'NL',
+//   pickupAddress: 'asdfsd asdf asdf 234234',
+//   deliveryCountry: 'NL',
+//   deliveryAddress: 'asdfasdf asdf asdf 234234',
+//   freightGood: 'paper',
+//   freightType: 'pallet',
+//   freightQuantity: 1,
+//   freightWeight: 1,
+//   freightHeight: 1,
+//   freightWidth: 1,
+//   freightDepth: 1,
+//   pickupDate: new Date().getTime().toString(),
+//   pickupHourFrom: 8,
+//   pickupHourTo: 20,
+//   deliveryDate: new Date().getTime().toString(),
+//   deliveryHourFrom: 8,
+//   deliveryHourTo: 20,
+// };
+
 export const newDeliverySchema = {
   pickupCountry: {
     required: {
@@ -30,6 +50,10 @@ export const newDeliverySchema = {
   pickupAddress: {
     required: {
       messageError: generalTexts.formErrors.fieldRequired,
+    },
+    pattern: {
+      test: '(?=(?:.*?[A-Za-z]){3})(?=(?:.*?[0-9]){1})',
+      messageError: generalTexts.newDelivery.route.formErrors.address,
     },
   },
   deliveryCountry: {
@@ -41,30 +65,54 @@ export const newDeliverySchema = {
     required: {
       messageError: generalTexts.formErrors.fieldRequired,
     },
+    pattern: {
+      test: '(?=(?:.*?[A-Za-z]){3})(?=(?:.*?[0-9]){1})',
+      messageError: generalTexts.newDelivery.route.formErrors.address,
+    },
   },
   freightQuantity: {
     required: {
       messageError: generalTexts.formErrors.fieldRequired,
+    },
+    pattern: {
+      test: '^[1-9]+[0-9]*$',
+      messageError: generalTexts.newDelivery.freightDetails.formErrors.quantity,
     },
   },
   freightWeight: {
     required: {
       messageError: generalTexts.formErrors.fieldRequired,
     },
+    pattern: {
+      test: '^[1-9]+[0-9]*$',
+      messageError: generalTexts.newDelivery.freightDetails.formErrors.weight,
+    },
   },
   freightHeight: {
     required: {
       messageError: generalTexts.formErrors.fieldRequired,
+    },
+    pattern: {
+      test: '^[1-9]+[0-9]*$',
+      messageError: generalTexts.newDelivery.freightDetails.formErrors.height,
     },
   },
   freightWidth: {
     required: {
       messageError: generalTexts.formErrors.fieldRequired,
     },
+    pattern: {
+      test: '^[1-9]+[0-9]*$',
+      messageError: generalTexts.newDelivery.freightDetails.formErrors.width,
+    },
   },
   freightDepth: {
     required: {
       messageError: generalTexts.formErrors.fieldRequired,
+    },
+    pattern: {
+      test: '^[1-9]+[0-9]*$',
+      messageError: generalTexts.newDelivery.freightDetails.formErrors.depth,
     },
   },
   pickupDate: {

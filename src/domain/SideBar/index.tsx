@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useLocation, Link } from 'react-router-dom';
 import styles from './sideBar.module.scss';
 import LogoBig from '../../assets/images/logoBig.svg';
 import LogoSmall from '../../assets/images/logoSmall.svg';
@@ -9,7 +10,8 @@ import { useAppContext } from '../../providers/AppProvider';
 import ButtonToggle from './ButtonToggle';
 
 const SideBar = () => {
-  const active = 'newDelivery';
+  const location = useLocation();
+  const [active, setActive] = useState(location.pathname);
   const { appConfig, setAppConfig } = useAppContext();
   const { toggleMenu } = appConfig;
 
@@ -25,6 +27,10 @@ const SideBar = () => {
     }
   };
 
+  useEffect(() => {
+    setActive(location.pathname);
+  }, [location]);
+
   return (
     <div className={`${styles.container} ${toggleMenu && styles.toggle}`}>
       <div className={styles.logoContainer}>
@@ -35,16 +41,17 @@ const SideBar = () => {
       <ButtonToggle onClick={changeToggleMenu} toggleMenu={toggleMenu} />
       <div>
         {sideBarLinks.map((link) => (
-          <ButtonLink
-            toggleMenu={toggleMenu}
-            active={link.id === active}
-            notifications={notifications(link.id)}
-            key={link.id}
-            icon={
-              <Icon color="light" icon={link.icon} width="25px" />
-            }
-            label={link.label}
-          />
+          <Link to={link.path} key={link.id}>
+            <ButtonLink
+              toggleMenu={toggleMenu}
+              active={link.path === active}
+              notifications={notifications(link.id)}
+              icon={
+                <Icon color="light" icon={link.icon} width="25px" />
+              }
+              label={link.label}
+            />
+          </Link>
         ))}
       </div>
     </div>

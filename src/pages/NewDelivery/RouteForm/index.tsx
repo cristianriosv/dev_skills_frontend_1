@@ -2,13 +2,12 @@ import React, { FC } from 'react';
 import { Card } from '../../../components/common';
 import {
   FormControl,
-  FormFeedback,
   FormGroup,
   FormLabel,
-  FormSelect,
 } from '../../../components/form';
 import { Row, Col } from '../../../components/layout';
 import generalTexts from '../../../resources/constants/generalTexts';
+import countries from '../../../resources/data/countries';
 
 type TRouteForm = {
   onChange: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
@@ -25,17 +24,20 @@ const RouteForm: FC<TRouteForm> = ({ onChange, errors, values }) => {
           :
         </FormLabel>
         <Col sm={5} md={4}>
-          <FormSelect
+          <FormControl
             name="pickupCountry"
             size="sm"
             onChange={onChange}
             isInvalid={!!errors.pickupCountry}
             value={values.pickupCountry}
+            as="select"
+            error={errors.pickupCountry}
           >
             <option value="">{routeTexts.countryPlaceholder}</option>
-            <option value="NL">Netherlands (NL)</option>
-          </FormSelect>
-          <FormFeedback type="invalid">{errors.pickupCountry}</FormFeedback>
+            {countries.map((country) => (
+              <option key={country.id} value={country.id}>{`${country.label} (${country.id})`}</option>
+            ))}
+          </FormControl>
         </Col>
         <Col sm={7} md={6}>
           <FormControl
@@ -44,9 +46,9 @@ const RouteForm: FC<TRouteForm> = ({ onChange, errors, values }) => {
             placeholder={routeTexts.addressPlaceholder}
             onChange={onChange}
             isInvalid={!!errors.pickupAddress}
+            error={errors.pickupAddress}
             value={values.pickupAddress}
           />
-          <FormFeedback type="invalid">{errors.pickupAddress}</FormFeedback>
         </Col>
       </FormGroup>
       <FormGroup as={Row}>
@@ -55,17 +57,20 @@ const RouteForm: FC<TRouteForm> = ({ onChange, errors, values }) => {
           :
         </FormLabel>
         <Col sm={5} md={4}>
-          <FormSelect
+          <FormControl
             name="deliveryCountry"
+            as="select"
             size="sm"
             onChange={onChange}
             isInvalid={!!errors.deliveryCountry}
             value={values.deliveryCountry}
+            error={errors.deliveryCountry}
           >
             <option>{routeTexts.countryPlaceholder}</option>
-            <option>Netherlands (NL)</option>
-          </FormSelect>
-          <FormFeedback type="invalid">{errors.deliveryCountry}</FormFeedback>
+            {countries.map((country) => (
+              <option key={country.id} value={country.id}>{`${country.label} (${country.id})`}</option>
+            ))}
+          </FormControl>
         </Col>
         <Col sm={7} md={6}>
           <FormControl
@@ -75,8 +80,8 @@ const RouteForm: FC<TRouteForm> = ({ onChange, errors, values }) => {
             onChange={onChange}
             isInvalid={!!errors.deliveryAddress}
             value={values.deliveryAddress}
+            error={errors.deliveryAddress}
           />
-          <FormFeedback type="invalid">{errors.deliveryAddress}</FormFeedback>
         </Col>
       </FormGroup>
     </Card>

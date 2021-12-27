@@ -10,8 +10,10 @@ type TValidationSchema = {
   }
 };
 
-type TError = Partial<Record<string, string>>;
-type TUseFormValidationSchema<T extends {}> = Partial<Record<keyof T | string, TValidationSchema>>;
+export type TError = Partial<Record<string, string>>;
+export type TUseFormValidationSchema<T extends {}> = Partial<
+  Record<keyof T | string, TValidationSchema>
+>;
 export type TData<T extends {}> = Partial<Record<keyof T | string, string | number>>;
 
 const useFormValidation = <T extends Record<keyof T, any> = {}> (
@@ -26,7 +28,7 @@ const useFormValidation = <T extends Record<keyof T, any> = {}> (
   const [showAllErrors, setShowAllErrors] = useState(false);
   const [values, setValues] = useState<TData<T>>({ ...data?.initData } || {});
   const [validForm, setValidForm] = useState(null);
-  const { schema } = data;
+  const schema:TUseFormValidationSchema<T> = data?.schema || {};
 
   const resetForm = () => {
     setShowAllErrors(false);
@@ -46,7 +48,7 @@ const useFormValidation = <T extends Record<keyof T, any> = {}> (
           if (validate?.required && (!formValue || formValue === '')) {
             foundErrors[field] = validate?.required?.messageError;
           }
-          if (validate?.pattern && !RegExp(validate.pattern.test).test(formValue.toString())) {
+          if (validate?.pattern && !RegExp(validate.pattern.test).test(formValue?.toString())) {
             foundErrors[field] = validate?.pattern?.messageError;
           }
         }
