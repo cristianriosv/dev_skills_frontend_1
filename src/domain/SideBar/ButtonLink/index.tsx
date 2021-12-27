@@ -23,7 +23,7 @@ const Link: FC<TLink> = ({
       </div>
       {toggleMenu && label}
     </div>
-    {toggleMenu && notifications && (
+    {toggleMenu && notifications > 0 && (
       <Pill content={notifications} bg="info" />
     )}
   </div>

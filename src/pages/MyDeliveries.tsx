@@ -1,29 +1,67 @@
 import React, { FC } from 'react';
+import { Table } from 'react-bootstrap';
+import { Icon } from '../components/common';
 import { Col, Container, Row } from '../components/layout';
-import { Map } from '../domain';
 import { useAppContext } from '../providers/AppProvider';
 import generalTexts from '../resources/constants/generalTexts';
 
 const MyDeliveries: FC = () => {
-  const { appConfig: { windowHeight } } = useAppContext();
+  const { freights } = useAppContext();
   return (
-    <Container fluid>
+    <Container>
       <Row>
-        <Col sm={12} md={12} lg={7} xl={6} xxl={6}>
+        <Col sm={12}>
           <Row className="py-3">
             <Col sm={12}>
               <h3>{generalTexts.myDeliveries.title}</h3>
               <p>{generalTexts.myDeliveries.description}</p>
             </Col>
+            {freights.length <= 0
+              ? (
+                <Col sm="12" className="d-flex align-items-center justify-content-center">
+                  <h5>{generalTexts.myDeliveries.empty}</h5>
+                  <Icon icon="truck" color="dark" width="100px" />
+                </Col>
+              )
+              : (
+                <Col>
+                  <Table size="sm" responsive="sm">
+                    <thead>
+                      <tr>
+                        <th>{generalTexts.myDeliveries.table.id}</th>
+                        <th>{generalTexts.myDeliveries.table.pickup}</th>
+                        <th>{generalTexts.myDeliveries.table.delivery}</th>
+                        <th>{generalTexts.myDeliveries.table.type}</th>
+                        <th>{generalTexts.myDeliveries.table.details}</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {freights.map((delivery) => (
+                        <tr key={`${delivery.id}`}>
+                          <td>{delivery.id}</td>
+                          <td>
+                            <p>{`${delivery.pickupDate} ${delivery.pickupHourFrom}hs - ${delivery.pickupHourTo}hs`}</p>
+                            <p>{`${delivery.pickupAddress} ${delivery.pickupCountry}`}</p>
+                          </td>
+                          <td>
+                            <p>{`${delivery.deliveryDate} ${delivery.deliveryHourFrom}hs - ${delivery.deliveryHourTo}hs`}</p>
+                            <p>{`${delivery.deliveryAddress} ${delivery.deliveryCountry}`}</p>
+                          </td>
+                          <td>
+                            <p>{`${delivery.freightGood} x ${delivery.freightQuantity}`}</p>
+                            <p>{`Pallets: ${delivery.freightType}`}</p>
+                          </td>
+                          <td>
+                            <p>{`Vol (cm3): ${delivery.freightDepth}x${delivery.freightHeight}x${delivery.freightWidth}`}</p>
+                            <p>{`Weight (kg): ${delivery.freightWeight}`}</p>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </Table>
+                </Col>
+              )}
           </Row>
-        </Col>
-        <Col>
-          <Map
-            height={windowHeight}
-            defaultCenter={[52.343, 4.7942]}
-            anchor={[52.343, 4.7942]}
-            defaultZoom={7}
-          />
         </Col>
       </Row>
     </Container>

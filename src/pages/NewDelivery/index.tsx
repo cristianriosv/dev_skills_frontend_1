@@ -12,7 +12,9 @@ import FreightForm from './FreightForm';
 import RouteForm from './RouteForm';
 
 const NewDelivery: FC = () => {
-  const { appConfig: { windowHeight }, feedback, setFeedback } = useAppContext();
+  const {
+    appConfig: { windowHeight }, feedback, setFeedback, freights, setFreights,
+  } = useAppContext();
   const [submitting, setSubmitting] = useState(false);
 
   const {
@@ -27,6 +29,8 @@ const NewDelivery: FC = () => {
     submit: () => {
       setSubmitting(true);
       setTimeout(() => {
+        freights.push({ ...values, id: freights.length });
+        setFreights([...freights]);
         setFeedback({
           ...feedback,
           show: true,

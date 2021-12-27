@@ -69,6 +69,14 @@ const generalTexts = {
   myDeliveries: {
     title: 'My Deliveries',
     description: 'Here you can view your active current deliveries.',
+    empty: 'You don\'t have any active deliveries at the moment.',
+    table: {
+      id: 'id',
+      pickup: 'Pickup',
+      delivery: 'Delivery',
+      details: 'Details',
+      type: 'Type',
+    },
   },
   history: {
     title: 'History',

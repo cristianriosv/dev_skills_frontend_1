@@ -2,6 +2,7 @@ import React, {
   FC, createContext, useState, useMemo, useContext,
 } from 'react';
 import { TFeedback } from '../domain/Feedback';
+import { TData } from '../hooks/useFormValidation';
 
 type TAppConfig = {
   toggleMenu: boolean,
@@ -14,6 +15,8 @@ type TAppContext = {
   setAppConfig: React.Dispatch<React.SetStateAction<TAppConfig>>,
   feedback: TFeedback,
   setFeedback: React.Dispatch<React.SetStateAction<TFeedback>>,
+  freights: TData<{}>[],
+  setFreights: React.Dispatch<React.SetStateAction<TData<{}>[]>>,
 };
 
 const AppContext = createContext<TAppContext>({
@@ -25,6 +28,8 @@ const AppContext = createContext<TAppContext>({
   setAppConfig: () => {},
   feedback: {},
   setFeedback: () => {},
+  freights: [],
+  setFreights: () => {},
 });
 
 const AppProvider: FC = ({ children }) => {
@@ -32,6 +37,7 @@ const AppProvider: FC = ({ children }) => {
     toggleMenu: true,
     windowHeight: window.innerHeight,
     limitToggle: 763,
+    freights: [],
   });
   const [feedback, setFeedback] = useState<TFeedback>({
     show: false,
@@ -39,11 +45,12 @@ const AppProvider: FC = ({ children }) => {
     description: '',
     canUserClose: true,
   });
+  const [freights, setFreights] = useState<TData<{}>[]>([]);
   const config: TAppContext = useMemo<TAppContext>(
     () => ({
-      appConfig, setAppConfig, feedback, setFeedback,
+      appConfig, setAppConfig, feedback, setFeedback, freights, setFreights,
     }),
-    [appConfig, feedback],
+    [appConfig, feedback, setFreights],
   );
 
   return (

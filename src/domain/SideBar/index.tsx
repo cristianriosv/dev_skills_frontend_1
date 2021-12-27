@@ -12,7 +12,7 @@ import ButtonToggle from './ButtonToggle';
 const SideBar = () => {
   const location = useLocation();
   const [active, setActive] = useState(location.pathname);
-  const { appConfig, setAppConfig } = useAppContext();
+  const { appConfig, setAppConfig, freights } = useAppContext();
   const { toggleMenu, limitToggle } = appConfig;
 
   const changeToggleMenu = () => {
@@ -21,8 +21,8 @@ const SideBar = () => {
 
   const notifications = (id : string) : number => {
     switch (id) {
-      case 'myDeliveries': return 2;
-      case 'history': return 5;
+      case 'myDeliveries': return freights.length;
+      case 'history': return 0;
       default: return null;
     }
   };
