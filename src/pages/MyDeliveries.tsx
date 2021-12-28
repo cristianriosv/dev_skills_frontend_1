@@ -1,6 +1,5 @@
 import React, { FC } from 'react';
-import { Table } from 'react-bootstrap';
-import { Icon } from '../components/common';
+import { Icon, Table } from '../components/common';
 import { Col, Container, Row } from '../components/layout';
 import { useAppContext } from '../providers/AppProvider';
 import generalTexts from '../resources/constants/generalTexts';

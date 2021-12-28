@@ -1,4 +1,5 @@
 import React, { FC, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Button, Icon } from '../../components/common';
 import { Form } from '../../components/form';
 import { Container, Row, Col } from '../../components/layout';
@@ -16,6 +17,7 @@ const NewDelivery: FC = () => {
     appConfig: { windowHeight }, feedback, setFeedback, freights, setFreights,
   } = useAppContext();
   const [submitting, setSubmitting] = useState(false);
+  const navigate = useNavigate();
 
   const {
     errors,
@@ -39,6 +41,7 @@ const NewDelivery: FC = () => {
         });
         resetForm();
         setSubmitting(false);
+        navigate('/my-deliveries');
       }, 1000);
     },
     failSubmit: () => {
